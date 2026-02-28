@@ -27,18 +27,11 @@ All tests are located in the `Tests/` folder and cover:
 - Role-based access restrictions
 - Input validation rules
 
-Tests were executed and all passed.
+All tests were executed and passed.
 
 ## Security Fixes Applied
-During development, the following vulnerabilities were identified and resolved:
+- SQL Injection: Fixed using Entity Framework Core parameterized queries
+- XSS Attacks: Fixed with proper output encoding and sanitization
+- Unauthorized Access: Fixed with strict role-based authorization middleware
 
-- **SQL Injection**: Fixed by replacing raw SQL string concatenation with Entity Framework Core parameterized LINQ queries.
-- **XSS Attacks**: Fixed through proper output encoding and input sanitization.
-- **Unauthorized Access**: Implemented strict role-based authorization checks and middleware.
-- **Weak Input Validation**: Added comprehensive model validation attributes.
-
-The application now follows secure coding best practices for authentication, authorization, and data protection.
-
----
-
-**Repository created for peer review.**
+Repository created for peer review.

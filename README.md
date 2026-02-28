@@ -1,32 +1,44 @@
-# UserManagementAPI - Capstone Project (Security & Authentication with Microsoft Copilot)
+# UserManagementAPI
 
-A secure ASP.NET Core RESTful API for managing user records. Built as part of the **three-phase capstone** using **Microsoft Copilot**.
+A secure ASP.NET Core Web API for managing user records with robust authentication and authorization.
 
-## How Microsoft Copilot Assisted (All 3 Phases)
+## Project Overview
+This RESTful API provides complete user management functionality including registration, login, and protected endpoints. Security was the primary focus throughout development.
 
-**Phase 1 – Writing Secure Code**  
-Copilot generated the User model with `[Required]` and `[StringLength]` attributes for input validation and helped write parameterized Entity Framework Core queries to **prevent SQL injection**.
+## Features
+- User registration and login with secure password hashing
+- Role-Based Access Control (RBAC) – User and Admin roles
+- JWT authentication
+- CRUD operations for user records
+- Protected admin endpoints
 
-**Phase 2 – Authentication & Authorization**  
-Copilot created a custom `AuthMiddleware.cs` and JWT-based authentication with **RBAC** (User/Admin roles). It also added `[Authorize(Roles = "Admin")]` attributes to protect admin endpoints.
-
-**Phase 3 – Debugging Security Issues**  
-Initial code had:
-- Raw SQL string concatenation (SQL injection risk)
-- No input sanitization (XSS risk on responses)
-- Missing authorization checks
-
-**Fixes Applied:**
-- Switched to EF Core LINQ queries (SQL injection fixed)
-- Added `HtmlEncoder` and response headers for XSS protection
-- Implemented role-based middleware + JWT validation
+## Security Measures
+- Strong input validation and sanitization
+- Parameterized database queries
+- Role-based authorization middleware
+- Protection against XSS attacks
+- Secure session and token handling
 
 ## Tests
-Unit tests were generated with Copilot (xUnit) to verify login, role-based access, and input validation. All tests pass.
+Unit tests have been added to verify application security.  
+All tests are located in the `Tests/` folder and cover:
+- Successful and failed login scenarios
+- Protection against SQL injection attempts
+- Role-based access restrictions
+- Input validation rules
 
-## Vulnerabilities Fixed Summary
-- **SQL Injection** → Fixed with parameterized queries (Copilot prompt: "Convert this raw SQL to safe EF Core query")
-- **XSS** → Fixed with proper encoding in responses
-- **Unauthorized access** → Fixed with JWT + RBAC middleware
+Tests were executed and all passed.
 
-Repository created specifically for peer review. All code was generated/debugged with Microsoft Copilot in Visual Studio.
+## Security Fixes Applied
+During development, the following vulnerabilities were identified and resolved:
+
+- **SQL Injection**: Fixed by replacing raw SQL string concatenation with Entity Framework Core parameterized LINQ queries.
+- **XSS Attacks**: Fixed through proper output encoding and input sanitization.
+- **Unauthorized Access**: Implemented strict role-based authorization checks and middleware.
+- **Weak Input Validation**: Added comprehensive model validation attributes.
+
+The application now follows secure coding best practices for authentication, authorization, and data protection.
+
+---
+
+**Repository created for peer review.**
